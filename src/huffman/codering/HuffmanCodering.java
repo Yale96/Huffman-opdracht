@@ -41,9 +41,10 @@ public class HuffmanCodering {
 //           System.out.println(cf.getFreq() + ", " + cf.getChar());
 //       }
        
-        List<CharFreq> builtTree = buildTree(p);
-        for(CharFreq cf : builtTree)
+        PriorityQueue<CharFreq> builtTree = buildTree(p);
+        while(builtTree.size() >= 1)
         {
+            CharFreq cf = builtTree.poll();
             System.out.println(cf.getFreq() + ", " + cf.left.getFreq() + ", " +  cf.left.getChar() + ", " + cf.right.getFreq() + ", " + cf.right.getChar());
         }
     }
@@ -89,10 +90,29 @@ public class HuffmanCodering {
         return q;
     }
     
-    private static List<CharFreq> buildTree(PriorityQueue<CharFreq> queue)
+//    private static List<CharFreq> buildTree(PriorityQueue<CharFreq> queue)
+//    {
+//        List<CharFreq> returnList = new LinkedList<>();
+//        while(queue.size() > 1)
+//        {
+//            CharFreq freqOne = queue.poll();
+//            CharFreq freqTwo = queue.poll();
+//            
+//            int combined = freqOne.getFreq() + freqTwo.getFreq();
+//            CharFreq combinedCharFreq = new CharFreq(combined);
+//            
+//            combinedCharFreq.left = freqOne;
+//            combinedCharFreq.right = freqTwo;
+//           
+//            
+//            returnList.add(combinedCharFreq);
+//        }
+//        return returnList;
+//    }
+    private static PriorityQueue<CharFreq> buildTree(PriorityQueue<CharFreq> queue)
     {
-        List<CharFreq> returnList = new LinkedList<>();
-        while(queue.size() > 1)
+        PriorityQueue<CharFreq> returnList = new PriorityQueue<>();
+        while(queue.size() >= 1)
         {
             CharFreq freqOne = queue.poll();
             CharFreq freqTwo = queue.poll();
@@ -102,9 +122,7 @@ public class HuffmanCodering {
             
             combinedCharFreq.left = freqOne;
             combinedCharFreq.right = freqTwo;
-            
-            freqOne.parent = combinedCharFreq;
-            freqTwo.parent = combinedCharFreq;
+           
             
             returnList.add(combinedCharFreq);
         }

@@ -16,7 +16,6 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>{
    private int frequency;
    public CharFreq left;
    public CharFreq right;
-   public CharFreq parent;
    
    public CharFreq(){
        
