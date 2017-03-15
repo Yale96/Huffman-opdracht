@@ -5,19 +5,28 @@
  */
 package huffman.codering;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Frank
  */
-public class FreqChar {
+public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>{
    private char character;
    private int frequency;
+   public CharFreq left;
+   public CharFreq right;
+   public CharFreq parent;
    
-   public FreqChar(){
+   public CharFreq(){
        
    }
+   
+   public CharFreq(int frequentie){
+       this.frequency = frequentie;
+   }
     
-    public FreqChar(char character, int frequency){
+    public CharFreq(char character, int frequency){
         this.character = character;
         this.frequency = frequency;
     }
@@ -36,5 +45,17 @@ public class FreqChar {
     
     public int getFreq(){
         return this.frequency;
+    }
+
+   @Override
+    public int compareTo(CharFreq o) {
+        Integer one = this.frequency;
+        Integer two = o.frequency;
+        return one.compareTo(two);
+    }
+    
+    @Override
+    public int compare(CharFreq o1, CharFreq o2) {
+        return o1.compareTo(o2);
     }
 }

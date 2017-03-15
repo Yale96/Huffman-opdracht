@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -29,7 +30,22 @@ public class HuffmanCodering {
      */
     public static void main(String[] args) throws FileNotFoundException {
        getText();
-       System.out.println(getFrequency());
+       System.out.println(importText);
+       Map<Character, Integer> returnMap = getFrequency();
+       PriorityQueue<CharFreq> p = sortFreqChars(returnMap);
+       
+//       while(!p.isEmpty())
+//       {
+//           //Met poll wordt de priority que "Leeg getrokken".
+//           CharFreq cf = p.poll();
+//           System.out.println(cf.getFreq() + ", " + cf.getChar());
+//       }
+       
+        List<CharFreq> builtTree = buildTree(p);
+        for(CharFreq cf : builtTree)
+        {
+            System.out.println(cf.getFreq() + ", " + cf.left.getFreq() + ", " +  cf.left.getChar() + ", " + cf.right.getFreq() + ", " + cf.right.getChar());
+        }
     }
     
     /*
@@ -48,10 +64,10 @@ public class HuffmanCodering {
        }
     }
     
-    private static String getFrequency(){
-
-        TreeMap<Character, Integer> CharFreqs = new TreeMap();
-        for ( char s : importText.toCharArray()) {
+    private static Map getFrequency(){
+            
+        Map<Character, Integer> CharFreqs = new TreeMap();
+        for (char s : importText.toCharArray()) {
             Integer count = CharFreqs.get(s);
             if (count == null) {
                 CharFreqs.put(s,1);
@@ -60,18 +76,38 @@ public class HuffmanCodering {
                 CharFreqs.put(s,count + 1);
             }
         }
-        
-        List<Map.Entry<Character, Integer>> gesorteerdeLijst = new LinkedList<>(CharFreqs.entrySet());
-        
-        Collections.sort(gesorteerdeLijst, new Comparator<Map.Entry<Character, Integer>>()
+        return CharFreqs;
+    }
+    
+    private static PriorityQueue<CharFreq> sortFreqChars(Map<Character, Integer> charInt)
+    {
+        PriorityQueue<CharFreq> q = new PriorityQueue<>(charInt.size());
+        for(Map.Entry<Character, Integer> ci : charInt.entrySet())
         {
-            @Override
-            public int compare(Map.Entry<Character, Integer> compOne,
-                               Map.Entry<Character, Integer> compTwo)
-            {
-                return compOne.getValue().compareTo(compTwo.getValue());
-            }
-        });
-        return gesorteerdeLijst.toString();
+            q.add(new CharFreq(ci.getKey(), ci.getValue()));
+        }
+        return q;
+    }
+    
+    private static List<CharFreq> buildTree(PriorityQueue<CharFreq> queue)
+    {
+        List<CharFreq> returnList = new LinkedList<>();
+        while(queue.size() > 1)
+        {
+            CharFreq freqOne = queue.poll();
+            CharFreq freqTwo = queue.poll();
+            
+            int combined = freqOne.getFreq() + freqTwo.getFreq();
+            CharFreq combinedCharFreq = new CharFreq(combined);
+            
+            combinedCharFreq.left = freqOne;
+            combinedCharFreq.right = freqTwo;
+            
+            freqOne.parent = combinedCharFreq;
+            freqTwo.parent = combinedCharFreq;
+            
+            returnList.add(combinedCharFreq);
+        }
+        return returnList;
     }
 }
