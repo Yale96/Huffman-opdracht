@@ -33,7 +33,7 @@ public class HuffmanCodering {
        System.out.println(importText);
        Map<Character, Integer> returnMap = getFrequency();
        PriorityQueue<CharFreq> p = sortFreqChars(returnMap);
-       
+       String s = "hoi";
 //       while(!p.isEmpty())
 //       {
 //           //Met poll wordt de priority que "Leeg getrokken".
@@ -108,7 +108,7 @@ public class HuffmanCodering {
     private static PriorityQueue<CharFreq> buildTree(PriorityQueue<CharFreq> queue)
     {
         PriorityQueue<CharFreq> returnList = new PriorityQueue<>();
-        while(queue.size() >= 1)
+        while(queue.size() > 1)
         {
             CharFreq freqOne = queue.poll();
             CharFreq freqTwo = queue.poll();
@@ -119,9 +119,10 @@ public class HuffmanCodering {
             combinedCharFreq.left = freqOne;
             combinedCharFreq.right = freqTwo;
            
-            
-            returnList.add(combinedCharFreq);
+            queue.add(combinedCharFreq);
+            //returnList.add(combinedCharFreq);
         }
+        returnList = queue;
         return returnList;
     }
 }
