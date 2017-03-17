@@ -53,15 +53,11 @@ public class HuffmanCodering {
     gets the text from a txt file, turns it into a string 'importText'
     */
     private static void getText() throws FileNotFoundException{
-        Scanner scanner = new Scanner( new File("tekst.txt") );
-       try{
+       try(Scanner scanner = new Scanner( new File("tekst.txt") )) {
            importText = scanner.useDelimiter("\\A").next();
        }
        catch(Exception e){
            System.out.println(e);
-       }
-       finally{
-           scanner.close();
        }
     }
     
