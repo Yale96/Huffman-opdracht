@@ -11,6 +11,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import java.util.TreeMap;
  */
 public class HuffmanCodering {
     static String importText = null;
+    
 
     /**
      * @param args the command line arguments
@@ -41,11 +43,18 @@ public class HuffmanCodering {
 //           System.out.println(cf.getFreq() + ", " + cf.getChar());
 //       }
        
-        PriorityQueue<CharFreq> builtTree = buildTree(p);
-        while(builtTree.size() >= 1)
+        CharFreq builtTree = buildTree(p);
+        
+//        while(builtTree.size() >= 1)
+//        {
+//            CharFreq cf = builtTree.poll();
+//            System.out.println(cf.getFreq() + ", " + cf.left.getFreq() + ", " +  cf.left.getChar() + ", " + cf.right.getFreq() + ", " + cf.right.getChar());
+//        }
+        
+        Map<Character, String> codes = readCode(returnMap, builtTree);
+        for(Map.Entry<Character, String> cs : codes.entrySet())
         {
-            CharFreq cf = builtTree.poll();
-            System.out.println(cf.getFreq() + ", " + cf.left.getFreq() + ", " +  cf.left.getChar() + ", " + cf.right.getFreq() + ", " + cf.right.getChar());
+            System.out.println(cs.getKey() + ", " + cs.getValue());
         }
     }
     
@@ -105,9 +114,9 @@ public class HuffmanCodering {
 //        }
 //        return returnList;
 //    }
-    private static PriorityQueue<CharFreq> buildTree(PriorityQueue<CharFreq> queue)
+    private static CharFreq buildTree(PriorityQueue<CharFreq> queue)
     {
-        PriorityQueue<CharFreq> returnList = new PriorityQueue<>();
+        
         while(queue.size() > 1)
         {
             CharFreq freqOne = queue.poll();
@@ -122,7 +131,23 @@ public class HuffmanCodering {
             queue.add(combinedCharFreq);
             //returnList.add(combinedCharFreq);
         }
-        returnList = queue;
-        return returnList;
+        CharFreq cf = queue.poll();
+        return cf;
+    }
+    
+    private static Map<Character, String> readCode(Map<Character, Integer> returnMap, CharFreq builtTree)
+    {
+        HashMap<Character, String> returnReadMap = new HashMap<>();
+        
+        HashMap<Character, String> map = new HashMap<>();
+        
+        for(Map.Entry<Character, Integer> m : returnMap.entrySet())
+        {
+            
+            String s = "";
+            Character c = m.getKey();
+            map = builtTree.getCode(c, s, returnReadMap);
+        }
+        return map;
     }
 }

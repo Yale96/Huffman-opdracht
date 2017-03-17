@@ -6,6 +6,8 @@
 package huffman.codering;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -46,6 +48,25 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>{
         return this.frequency;
     }
 
+    public HashMap<Character, String> getCode(Character c, String code, Map<Character, String> map)
+    {
+        HashMap<Character, String> returnCodeMap = new HashMap<>();
+            
+        if(c.equals(this.character))
+        {
+            returnCodeMap.put(c, code);
+        }
+        if(left != null)
+        {
+            left.getCode(c, code + '0', returnCodeMap);
+        }
+        if(right != null)
+        {
+            right.getCode(c, code + '1', returnCodeMap);
+        }
+        return returnCodeMap;
+    }
+    
    @Override
     public int compareTo(CharFreq o) {
         Integer one = this.frequency;
