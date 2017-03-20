@@ -5,6 +5,7 @@
  */
 package huffman.codering;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +14,8 @@ import java.util.Map;
  *
  * @author Frank
  */
-public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>{
-   private char character;
+public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Serializable{
+   private char character = ' ';
    private int frequency;
    public CharFreq left;
    public CharFreq right;
@@ -47,24 +48,39 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>{
     public int getFreq(){
         return this.frequency;
     }
-
-    public HashMap<Character, String> getCode(Character c, String code, Map<Character, String> map)
-    {
-        HashMap<Character, String> returnCodeMap = new HashMap<>();
-            
-        if(c.equals(this.character))
-        {
-            returnCodeMap.put(c, code);
+    
+    boolean hasCharacter(){
+        if (this.character == ' '){
+            return false;
         }
+        else{
+            return true;
+        }
+    }
+
+    public void getCode(Character c, String code)
+    {           
         if(left != null)
         {
-            left.getCode(c, code + '0', returnCodeMap);
+            left.getCode(c, code + '0');
         }
         if(right != null)
         {
-            right.getCode(c, code + '1', returnCodeMap);
+            right.getCode(c, code + '1');
         }
-        return returnCodeMap;
+        
+        if(c.equals(this.character))
+        {
+            HuffmanCodering.codes.put(c, code);
+        }
+    }
+    
+    public CharFreq returnLeft(){
+        return this.left;
+    }
+    
+    public CharFreq returnRight(){
+        return this.right;
     }
     
    @Override
