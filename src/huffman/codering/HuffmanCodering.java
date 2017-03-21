@@ -162,7 +162,6 @@ public class HuffmanCodering {
         
         for(Character c : inputText.toCharArray()){
             String code = codes.get(c);
-            System.out.println(code);
             result += code;
         }
         
