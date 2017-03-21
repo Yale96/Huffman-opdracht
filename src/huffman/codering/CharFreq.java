@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Frank
  */
 public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Serializable{
-   private char character = ' ';
+   private char character;
    private int frequency;
    public CharFreq left;
    public CharFreq right;
@@ -50,8 +50,10 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Ser
     }
     
     boolean hasCharacter(){
-        if (this.character == ' '){
+        if (this.character == '\u0000'){
+            
             return false;
+            
         }
         else{
             return true;
