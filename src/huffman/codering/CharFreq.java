@@ -73,7 +73,7 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Ser
         
         if(c.equals(this.character))
         {
-            HuffmanCodering.codes.put(c, code);
+            Main.codes.put(c, code);
         }
     }
     

@@ -10,94 +10,44 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Writer;
-import static java.lang.System.in;
-import java.math.BigInteger;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.TreeMap;
-import sun.misc.IOUtils;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  *
- * @author Frank
+ * @author yanni
  */
-public class HuffmanCodering {
-    static String importText = null;
-    static Map<Character, String> codes = new HashMap<>();
+public class HuffmanCoding {
     
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-       getText();
-       System.out.println(importText);
-       Map<Character, Integer> returnMap = getFrequency();
-       PriorityQueue<CharFreq> p = sortFreqChars(returnMap);
-//       while(!p.isEmpty())
-//       {
-//           //Met poll wordt de priority que "Leeg getrokken".
-//           CharFreq cf = p.poll();
-//           System.out.println(cf.getFreq() + ", " + cf.getChar());
-//       }
-       
-        CharFreq builtTree = buildTree(p);
+    public HuffmanCoding()
+    {
         
-//        while(builtTree.size() >= 1)
-//        {
-//            CharFreq cf = builtTree.poll();
-//            System.out.println(cf.getFreq() + ", " + cf.left.getFreq() + ", " +  cf.left.getChar() + ", " + cf.right.getFreq() + ", " + cf.right.getChar());
-//        }
-        
-        readCode(returnMap, builtTree);
-        
-        String encodedData = encodeText(importText, codes);
-        System.out.println(encodedData);
-        /*
-        for(Map.Entry<Character, String > m: codes.entrySet()){
-            System.out.println(m.getKey() + ", " + m.getValue());
-        }
-        */
-        writeDataToFile(encodedData, builtTree);   
-        String binaryResult = decodeFile();
-        System.out.println(binaryResult);
     }
-    
-    /*
+     /*
     gets the text from a txt file, turns it into a string 'importText'
     */
-    private static void getText() throws FileNotFoundException{
+    public static String getText() throws FileNotFoundException{
+        String text = "";
        try(Scanner scanner = new Scanner( new File("tekst.txt") )) {
-           importText = scanner.useDelimiter("\\A").next();
+           text = scanner.useDelimiter("\\A").next();
+           return text;
        }
        catch(Exception e){
            System.out.println(e);
+           return text;
        }
     }
     
-    private static Map getFrequency(){
+    public static Map getFrequency(String text){
             
         Map<Character, Integer> CharFreqs = new TreeMap();
-        for (char s : importText.toCharArray()) {
+        for (char s : text.toCharArray()) {
             Integer count = CharFreqs.get(s);
             if (count == null) {
                 CharFreqs.put(s,1);
@@ -109,7 +59,7 @@ public class HuffmanCodering {
         return CharFreqs;
     }
     
-    private static PriorityQueue<CharFreq> sortFreqChars(Map<Character, Integer> charInt)
+    public static PriorityQueue<CharFreq> sortFreqChars(Map<Character, Integer> charInt)
     {
         PriorityQueue<CharFreq> q = new PriorityQueue<>(charInt.size());
         for(Map.Entry<Character, Integer> ci : charInt.entrySet())
@@ -119,7 +69,7 @@ public class HuffmanCodering {
         return q;
     }
 
-    private static CharFreq buildTree(PriorityQueue<CharFreq> queue)
+    public static CharFreq buildTree(PriorityQueue<CharFreq> queue)
     {
         
         while(queue.size() > 1)
@@ -139,7 +89,7 @@ public class HuffmanCodering {
         return cf;
     }
     
-    private static HashMap<Character, String> readCode(Map<Character, Integer> returnMap, CharFreq builtTree)
+    public static HashMap<Character, String> readCode(Map<Character, Integer> returnMap, CharFreq builtTree)
     {
         HashMap<Character, String> returnReadMap = new HashMap<>();
         
@@ -156,7 +106,7 @@ public class HuffmanCodering {
         return returnReadMap;
     }
     
-    private static String encodeText(String inputText, Map<Character, String> codes){
+    public static String encodeText(String inputText, Map<Character, String> codes){
         
         String result = "";
         
@@ -168,7 +118,7 @@ public class HuffmanCodering {
         return result;
     }
     
-    private static void writeDataToFile(String onesandzeros, CharFreq tree) throws IOException{
+    public static void writeDataToFile(String onesandzeros, CharFreq tree) throws IOException{
         FileOutputStream fos = new FileOutputStream("encoded.dat");
         
         for(int i = 0; i < onesandzeros.length(); i = i + 8){
@@ -200,7 +150,7 @@ public class HuffmanCodering {
             }
     }
     
-    private static String decodeFile() throws IOException, ClassNotFoundException{
+    public static String decodeFile() throws IOException, ClassNotFoundException{
         File file = new File("encoded.dat");
         byte[] fileData = new byte[(int) file.length()];
         DataInputStream dis = new DataInputStream(new FileInputStream(file));

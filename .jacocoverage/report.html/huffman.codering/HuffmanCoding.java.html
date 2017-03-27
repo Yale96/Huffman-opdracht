@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="nl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HuffmanCoding.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Huffman_codering&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">huffman.codering</a> &gt; <span class="el_source">HuffmanCoding.java</span></div><h1>HuffmanCoding.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package huffman.codering;
+
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+/**
+ *
+ * @author yanni
+ */
+public class HuffmanCoding {
+    
+    public HuffmanCoding()
+<span class="fc" id="L29">    {</span>
+        
+<span class="fc" id="L31">    }</span>
+     /*
+    gets the text from a txt file, turns it into a string 'importText'
+    */
+    public static String getText() throws FileNotFoundException{
+<span class="fc" id="L36">        String text = &quot;&quot;;</span>
+<span class="pc" id="L37">       try(Scanner scanner = new Scanner( new File(&quot;tekst.txt&quot;) )) {</span>
+<span class="fc" id="L38">           text = scanner.useDelimiter(&quot;\\A&quot;).next();</span>
+<span class="fc" id="L39">           return text;</span>
+<span class="pc bpc" id="L40" title="6 of 8 branches missed.">       }</span>
+<span class="nc" id="L41">       catch(Exception e){</span>
+<span class="nc" id="L42">           System.out.println(e);</span>
+<span class="nc" id="L43">           return text;</span>
+       }
+    }
+    
+    public static Map getFrequency(String text){
+            
+<span class="fc" id="L49">        Map&lt;Character, Integer&gt; CharFreqs = new TreeMap();</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (char s : text.toCharArray()) {</span>
+<span class="fc" id="L51">            Integer count = CharFreqs.get(s);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (count == null) {</span>
+<span class="fc" id="L53">                CharFreqs.put(s,1);</span>
+            }
+            else {
+<span class="fc" id="L56">                CharFreqs.put(s,count + 1);</span>
+            }
+        }
+<span class="fc" id="L59">        return CharFreqs;</span>
+    }
+    
+    public static PriorityQueue&lt;CharFreq&gt; sortFreqChars(Map&lt;Character, Integer&gt; charInt)
+    {
+<span class="nc" id="L64">        PriorityQueue&lt;CharFreq&gt; q = new PriorityQueue&lt;&gt;(charInt.size());</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        for(Map.Entry&lt;Character, Integer&gt; ci : charInt.entrySet())</span>
+        {
+<span class="nc" id="L67">            q.add(new CharFreq(ci.getKey(), ci.getValue()));</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        return q;</span>
+    }
+
+    public static CharFreq buildTree(PriorityQueue&lt;CharFreq&gt; queue)
+    {
+        
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        while(queue.size() &gt; 1)</span>
+        {
+<span class="nc" id="L77">            CharFreq freqOne = queue.poll();</span>
+<span class="nc" id="L78">            CharFreq freqTwo = queue.poll();</span>
+            
+<span class="nc" id="L80">            int combined = freqOne.getFreq() + freqTwo.getFreq();</span>
+<span class="nc" id="L81">            CharFreq combinedCharFreq = new CharFreq(combined);</span>
+            
+<span class="nc" id="L83">            combinedCharFreq.left = freqOne;</span>
+<span class="nc" id="L84">            combinedCharFreq.right = freqTwo;</span>
+           
+<span class="nc" id="L86">            queue.add(combinedCharFreq);</span>
+<span class="nc" id="L87">        }</span>
+<span class="nc" id="L88">        CharFreq cf = queue.poll();</span>
+<span class="nc" id="L89">        return cf;</span>
+    }
+    
+    public static HashMap&lt;Character, String&gt; readCode(Map&lt;Character, Integer&gt; returnMap, CharFreq builtTree)
+    {
+<span class="nc" id="L94">        HashMap&lt;Character, String&gt; returnReadMap = new HashMap&lt;&gt;();</span>
+        
+<span class="nc" id="L96">        HashMap&lt;Character, String&gt; map = new HashMap&lt;&gt;();</span>
+        
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        for(Map.Entry&lt;Character, Integer&gt; m : returnMap.entrySet())</span>
+        {
+            
+<span class="nc" id="L101">            String s = &quot;&quot;;</span>
+<span class="nc" id="L102">            Character c = m.getKey();</span>
+            
+<span class="nc" id="L104">            builtTree.getCode(c, s);</span>
+<span class="nc" id="L105">        }</span>
+<span class="nc" id="L106">        return returnReadMap;</span>
+    }
+    
+    public static String encodeText(String inputText, Map&lt;Character, String&gt; codes){
+        
+<span class="nc" id="L111">        String result = &quot;&quot;;</span>
+        
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        for(Character c : inputText.toCharArray()){</span>
+<span class="nc" id="L114">            String code = codes.get(c);</span>
+<span class="nc" id="L115">            result += code;</span>
+        }
+        
+<span class="nc" id="L118">        return result;</span>
+    }
+    
+    public static void writeDataToFile(String onesandzeros, CharFreq tree) throws IOException{
+<span class="nc" id="L122">        FileOutputStream fos = new FileOutputStream(&quot;encoded.dat&quot;);</span>
+        
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        for(int i = 0; i &lt; onesandzeros.length(); i = i + 8){</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if((i + 8) &lt; onesandzeros.length()){</span>
+<span class="nc" id="L126">                int byteInt = Integer.parseInt(onesandzeros.substring(i, i + 8), 2);</span>
+<span class="nc" id="L127">                byte b = (byte)byteInt;</span>
+<span class="nc" id="L128">                fos.write(b);   </span>
+<span class="nc" id="L129">            }</span>
+            else{
+<span class="nc" id="L131">                int toAddCharacters = i + 8 - onesandzeros.length();</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">                for(int j = 0; j &lt; toAddCharacters; j++){</span>
+<span class="nc" id="L133">                    onesandzeros += &quot;0&quot;;</span>
+                }
+<span class="nc" id="L135">                int byteInt = Integer.parseInt(onesandzeros.substring(i, i + 8), 2);   </span>
+<span class="nc" id="L136">                byte b = (byte)byteInt;</span>
+<span class="nc" id="L137">                fos.write(b);</span>
+            }
+        }
+<span class="nc" id="L140">        fos.close();    </span>
+        
+        try
+           {
+<span class="nc" id="L144">                  ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;key.ser&quot;));</span>
+<span class="nc" id="L145">                  oos.writeObject(tree);</span>
+<span class="nc" id="L146">                  oos.close();</span>
+           }
+<span class="nc" id="L148">        catch(IOException ioe){</span>
+<span class="nc" id="L149">                  ioe.printStackTrace();</span>
+<span class="nc" id="L150">            }</span>
+<span class="nc" id="L151">    }</span>
+    
+    public static String decodeFile() throws IOException, ClassNotFoundException{
+<span class="nc" id="L154">        File file = new File(&quot;encoded.dat&quot;);</span>
+<span class="nc" id="L155">        byte[] fileData = new byte[(int) file.length()];</span>
+<span class="nc" id="L156">        DataInputStream dis = new DataInputStream(new FileInputStream(file));</span>
+<span class="nc" id="L157">        dis.readFully(fileData);</span>
+<span class="nc" id="L158">        dis.close();    </span>
+    
+<span class="nc" id="L160">        String binaryResult = &quot;&quot;;</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        for(byte b: fileData){</span>
+<span class="nc" id="L162">        String s = String.format(&quot;%8s&quot;, Integer.toBinaryString(b &amp; 0xFF)).replace(' ', '0'); //http://stackoverflow.com/questions/12310017/how-to-convert-a-byte-to-its-binary-string-representation</span>
+<span class="nc" id="L163">        binaryResult += s;</span>
+        }
+             
+<span class="nc" id="L166">        ObjectInputStream fis = new ObjectInputStream(new FileInputStream(&quot;key.ser&quot;));</span>
+<span class="nc" id="L167">        CharFreq tree = (CharFreq) fis.readObject();</span>
+        
+<span class="nc" id="L169">        String finalText = &quot;&quot;;</span>
+<span class="nc" id="L170">        CharFreq cf = tree;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        for(char c: binaryResult.toCharArray()){</span>
+            
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                    if(c == '0'){</span>
+<span class="nc" id="L174">                        cf = cf.returnLeft();</span>
+                    }
+<span class="nc bnc" id="L176" title="All 2 branches missed.">                    if(c == '1'){</span>
+<span class="nc" id="L177">                        cf = cf.returnRight();</span>
+                    }
+                    
+<span class="nc bnc" id="L180" title="All 2 branches missed.">                    if(cf.hasCharacter()){</span>
+<span class="nc" id="L181">                        finalText += cf.getChar();   </span>
+<span class="nc" id="L182">                        cf = tree;   </span>
+                    }
+        }
+<span class="nc" id="L185">        return finalText;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
