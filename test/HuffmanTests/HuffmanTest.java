@@ -5,9 +5,11 @@
  */
 package HuffmanTests;
 
+import huffman.codering.CharFreq;
 import huffman.codering.HuffmanCoding;
 import java.io.FileNotFoundException;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.TreeMap;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -77,6 +79,24 @@ public class HuffmanTest {
     @Test
     public void testSortFreqChars()
     {
+        Map<Character, Integer> mapje = new TreeMap();
+        mapje.put(' ', 3);
+        mapje.put('+', 1);
+        mapje.put('D', 1);
+        mapje.put('F', 1);
+        mapje.put('J', 1);
+        mapje.put('c', 1);
+        mapje.put('i', 2);
+        mapje.put('s', 1);
+        mapje.put('t', 1);
         
+        PriorityQueue<CharFreq> q = new PriorityQueue<>(mapje.size());
+        
+        for(Map.Entry<Character, Integer> ci : mapje.entrySet())
+        {
+            q.add(new CharFreq(ci.getKey(), ci.getValue()));
+        }
+        
+        assertEquals(q, hc.sortFreqChars(mapje));
     }
 }
