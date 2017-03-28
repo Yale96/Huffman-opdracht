@@ -73,4 +73,10 @@ public class HuffmanTest {
         
         assertEquals(mapje, hc.getFrequency(text));
     }
+    
+    @Test
+    public void testSortFreqChars()
+    {
+        
+    }
 }
