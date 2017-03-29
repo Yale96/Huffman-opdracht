@@ -25,6 +25,8 @@ import java.util.TreeMap;
  */
 public class HuffmanCoding {
     
+    public static Map<Character, String> codes = new HashMap<>();
+    
     public HuffmanCoding()
     {
         
@@ -32,9 +34,10 @@ public class HuffmanCoding {
      /*
     gets the text from a txt file, turns it into a string 'importText'
     */
-    public static String getText() throws FileNotFoundException{
+    public static String getText(String fileName) throws FileNotFoundException{
         String text = "";
-       try(Scanner scanner = new Scanner( new File("tekst.txt") )) {
+       try{
+           Scanner scanner = new Scanner(new File(fileName));
            text = scanner.useDelimiter("\\A").next();
            return text;
        }
@@ -118,9 +121,9 @@ public class HuffmanCoding {
         return result;
     }
     
-    public static void writeDataToFile(String onesandzeros, CharFreq tree) throws IOException{
+    public static void writeDataToFile(String onesandzeros, CharFreq tree, String fileName) throws IOException{
         FileOutputStream fos = new FileOutputStream("encoded.dat");
-        
+        int countExtraZeros = 0;
         for(int i = 0; i < onesandzeros.length(); i = i + 8){
             if((i + 8) < onesandzeros.length()){
                 int byteInt = Integer.parseInt(onesandzeros.substring(i, i + 8), 2);
@@ -131,6 +134,7 @@ public class HuffmanCoding {
                 int toAddCharacters = i + 8 - onesandzeros.length();
                 for(int j = 0; j < toAddCharacters; j++){
                     onesandzeros += "0";
+                    countExtraZeros++;
                 }
                 int byteInt = Integer.parseInt(onesandzeros.substring(i, i + 8), 2);   
                 byte b = (byte)byteInt;
@@ -138,10 +142,10 @@ public class HuffmanCoding {
             }
         }
         fos.close();    
-        
+        tree.setExtraZeroes(countExtraZeros);
         try
            {
-                  ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("key.ser"));
+                  ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
                   oos.writeObject(tree);
                   oos.close();
            }
@@ -161,11 +165,12 @@ public class HuffmanCoding {
         for(byte b: fileData){
         String s = String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0'); //http://stackoverflow.com/questions/12310017/how-to-convert-a-byte-to-its-binary-string-representation
         binaryResult += s;
+        
         }
              
         ObjectInputStream fis = new ObjectInputStream(new FileInputStream("key.ser"));
         CharFreq tree = (CharFreq) fis.readObject();
-        
+        binaryResult = binaryResult.substring(0, binaryResult.length() - tree.getExtraZeroes());
         String finalText = "";
         CharFreq cf = tree;
         for(char c: binaryResult.toCharArray()){

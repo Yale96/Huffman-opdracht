@@ -41,7 +41,7 @@ import java.nio.file.Paths;
  * @author Frank
  */
 <span class="nc" id="L43">public class Main {</span>
-<span class="nc" id="L44">    static Map&lt;Character, String&gt; codes = new HashMap&lt;&gt;();</span>
+    
     
 
     /**
@@ -50,9 +50,9 @@ import java.nio.file.Paths;
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
 <span class="nc" id="L51">       HuffmanCoding hc = new HuffmanCoding();</span>
        
-<span class="nc" id="L53">       hc.getText();</span>
-<span class="nc" id="L54">       System.out.println(hc.getText());</span>
-<span class="nc" id="L55">       Map&lt;Character, Integer&gt; returnMap = hc.getFrequency(hc.getText());</span>
+<span class="nc" id="L53">       hc.getText(&quot;tekst.txt&quot;);</span>
+<span class="nc" id="L54">       System.out.println(hc.getText(&quot;tekst.txt&quot;));</span>
+<span class="nc" id="L55">       Map&lt;Character, Integer&gt; returnMap = hc.getFrequency(hc.getText(&quot;tekst.txt&quot;));</span>
 <span class="nc" id="L56">       PriorityQueue&lt;CharFreq&gt; p = hc.sortFreqChars(returnMap);</span>
        
 <span class="nc" id="L58">        CharFreq builtTree = hc.buildTree(p);</span>
@@ -60,9 +60,9 @@ import java.nio.file.Paths;
         
 <span class="nc" id="L61">        hc.readCode(returnMap, builtTree);</span>
         
-<span class="nc" id="L63">        String encodedData = hc.encodeText(hc.getText(), codes);</span>
+<span class="nc" id="L63">        String encodedData = hc.encodeText(hc.getText(&quot;tekst.txt&quot;), hc.codes);</span>
 <span class="nc" id="L64">        System.out.println(encodedData);</span>
-<span class="nc" id="L65">        hc.writeDataToFile(encodedData, builtTree);   </span>
+<span class="nc" id="L65">        hc.writeDataToFile(encodedData, builtTree, &quot;key.ser&quot;);   </span>
 <span class="nc" id="L66">        String binaryResult = hc.decodeFile();</span>
 <span class="nc" id="L67">        System.out.println(binaryResult);</span>
 <span class="nc" id="L68">    }</span>

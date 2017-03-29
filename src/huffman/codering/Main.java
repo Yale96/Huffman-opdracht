@@ -41,7 +41,7 @@ import java.nio.file.Paths;
  * @author Frank
  */
 public class Main {
-    static Map<Character, String> codes = new HashMap<>();
+    
     
 
     /**
@@ -50,9 +50,9 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
        HuffmanCoding hc = new HuffmanCoding();
        
-       hc.getText();
-       System.out.println(hc.getText());
-       Map<Character, Integer> returnMap = hc.getFrequency(hc.getText());
+       hc.getText("tekst.txt");
+       System.out.println(hc.getText("tekst.txt"));
+       Map<Character, Integer> returnMap = hc.getFrequency(hc.getText("tekst.txt"));
        PriorityQueue<CharFreq> p = hc.sortFreqChars(returnMap);
        
         CharFreq builtTree = hc.buildTree(p);
@@ -60,9 +60,9 @@ public class Main {
         
         hc.readCode(returnMap, builtTree);
         
-        String encodedData = hc.encodeText(hc.getText(), codes);
+        String encodedData = hc.encodeText(hc.getText("tekst.txt"), hc.codes);
         System.out.println(encodedData);
-        hc.writeDataToFile(encodedData, builtTree);   
+        hc.writeDataToFile(encodedData, builtTree, "key.ser");   
         String binaryResult = hc.decodeFile();
         System.out.println(binaryResult);
     }

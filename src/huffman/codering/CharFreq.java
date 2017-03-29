@@ -14,15 +14,24 @@ import java.util.Map;
  *
  * @author Frank
  */
-public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Serializable{
+public class CharFreq implements Comparable<CharFreq>, /*Comparator<CharFreq>,*/ Serializable{
    private char character;
    private int frequency;
    public CharFreq left;
    public CharFreq right;
+   private int extraZeroes;
    
-   public CharFreq(){
-       
-   }
+//   public CharFreq(){
+//       
+//   }
+   
+   public int getExtraZeroes() {
+        return extraZeroes;
+    }
+
+    public void setExtraZeroes(int extraZeroes) {
+        this.extraZeroes = extraZeroes;
+    }
    
    public CharFreq(int frequentie){
        this.frequency = frequentie;
@@ -33,13 +42,13 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Ser
         this.frequency = frequency;
     }
     
-    public void setChar(char character){
-        this.character = character;
-    }
-    
-    public void setFreq(int frequency){
-        this.frequency = frequency;
-    }
+//    public void setChar(char character){
+//        this.character = character;
+//    }
+//    
+//    public void setFreq(int frequency){
+//        this.frequency = frequency;
+//    }
     
     public char getChar(){
         return this.character;
@@ -73,7 +82,7 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Ser
         
         if(c.equals(this.character))
         {
-            Main.codes.put(c, code);
+            HuffmanCoding.codes.put(c, code);
         }
     }
     
@@ -92,8 +101,8 @@ public class CharFreq implements Comparable<CharFreq>, Comparator<CharFreq>, Ser
         return one.compareTo(two);
     }
     
-    @Override
-    public int compare(CharFreq o1, CharFreq o2) {
-        return o1.compareTo(o2);
-    }
+//    @Override
+//    public int compare(CharFreq o1, CharFreq o2) {
+//        return o1.compareTo(o2);
+//    }
 }

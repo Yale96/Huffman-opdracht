@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-DHBN9IL" name="HuffmanTests.HuffmanTest" skipped="0" tests="2" time="0.045" timestamp="2017-03-27T14:15:29">
+<testsuite errors="0" failures="0" hostname="DESKTOP-DHBN9IL" name="HuffmanTests.HuffmanTest" skipped="0" tests="9" time="0.1" timestamp="2017-03-29T11:32:49">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="NL" />
@@ -61,7 +61,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner HuffmanTests.HuffmanTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\build\test\results\TEST-HuffmanTests.HuffmanTest.xml crashfile=C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\build\junitvmwatcher2321554752702244574.properties propsfile=C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\build\junit7460054330437014465.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner HuffmanTests.HuffmanTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\build\test\results\TEST-HuffmanTests.HuffmanTest.xml crashfile=C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\build\junitvmwatcher8566205336296174550.properties propsfile=C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\build\junit5754411420741853280.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -84,7 +84,6 @@
     <property name="build.compiler.emacs" value="true" />
     <property name="libs.javaee-web-api-6.0.src" value="" />
     <property name="libs.jsp-compilation-syscp.classpath" value="E:\Programmas\Netbeans\NetBeans 8.2\extide\ant\lib\ant.jar;E:\Programmas\Netbeans\NetBeans 8.2\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;E:\Programmas\Netbeans\NetBeans 8.2\enterprise\modules\ext\glassfish-jspparser-4.0.jar;E:\Programmas\Netbeans\NetBeans 8.2\enterprise\modules\ext\jstl-impl.jar;E:\Programmas\Netbeans\NetBeans 8.2\enterprise\modules\ext\jsf-2_2\javax.faces.jar" />
-    <property name="nu.validator.checker.imageCandidateString.hasWidth" value="0" />
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\endorsed" />
     <property name="libs.Comet-GlassFish-v3.maven-pom" value="" />
     <property name="libs.groovy-all.src" value="" />
@@ -256,6 +255,7 @@
     <property name="libs.DataBindingME-SVG.src" value="E:\Programmas\Netbeans\NetBeans 8.2\mobility\sources\netbeans_databindingme_svg-src.zip" />
     <property name="dist.jar" value="dist/Huffman_codering.jar" />
     <property name="libs.spring-framework400.maven-pom" value="" />
+    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="Huffman_codering" />
     <property name="netbeans.hash.code" value="unique=NB_CND_EXTIDE_GFMOD_GROOVY_JAVA_JC_MOB_PHP_WEBCOMMON_WEBEE0b469fae1-7124-47e6-afdf-43dc0a452741_e54b04f6-07e8-4ab5-932b-2a1e53c679a4" />
@@ -394,7 +394,7 @@
     <property name="libs.spring-framework300.classpath" value="E:\Programmas\Netbeans\NetBeans 8.2\ide\modules\org-apache-commons-logging.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\cglib-2.2.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-aop-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-aspects-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-beans-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-build-src-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-context-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-context-support-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-core-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-expression-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-framework-bom-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-instrument-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-jdbc-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-jms-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-orm-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-oxm-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-struts-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-test-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-tx-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-web-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.7.RELEASE.jar" />
     <property name="libs.jsp-compiler.maven-pom" value="" />
     <property name="libs.hamcrest.src" value="" />
-    <property name="run.jvmargs" value="  -javaagent:&quot;C:\Users\yanni\AppData\Roaming\NetBeans\8.2\modules\ext\jacocoagent.jar&quot;=includes=huffman.*:huffman.codering.*,destfile=&quot;C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\jacoco.exec-887958134400658&quot;" />
+    <property name="run.jvmargs" value="  -javaagent:&quot;C:\Users\yanni\AppData\Roaming\NetBeans\8.2\modules\ext\jacocoagent.jar&quot;=includes=huffman.*:huffman.codering.*,destfile=&quot;C:\Users\yanni\OneDrive\Documents\GitHub\JCF41\Huffman\Huffman-opdracht\jacoco.exec-1051003775146651&quot;" />
     <property name="libs.hibernate4-persistence.classpath" value="E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\antlr-2.7.7.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\c3p0-0.9.2.1.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-c3p0-4.3.1.Final.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\mchange-commons-java-0.2.3.4.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\dom4j-1.6.1.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\ehcache-core-2.4.3.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-ehcache-4.3.1.Final.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-core-4.3.1.Final.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\jboss-logging-3.1.3.GA.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-commons-annotations-4.0.4.Final.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-entitymanager-4.3.1.Final.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\javassist-3.18.1-GA.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\jboss-transaction-api_1.2_spec-1.0.0.Final.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\slf4j-api-1.6.1.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\slf4j-simple-1.6.1.jar;E:\Programmas\Netbeans\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-jpa-2.1-api-1.0.0.Final.jar" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
     <property name="dist.archive.excludes" value="" />
@@ -419,8 +419,48 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="E:\Programmas\Netbeans\NetBeans 8.2\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="HuffmanTests.HuffmanTest" name="testGetText" time="0.005" />
+  <testcase classname="HuffmanTests.HuffmanTest" name="testGetTextWithException" time="0.0" />
+  <testcase classname="HuffmanTests.HuffmanTest" name="testEncodeText" time="0.0" />
+  <testcase classname="HuffmanTests.HuffmanTest" name="testWriteException" time="0.02" />
+  <testcase classname="HuffmanTests.HuffmanTest" name="testBuildTree" time="0.0" />
+  <testcase classname="HuffmanTests.HuffmanTest" name="testGetText" time="0.0" />
+  <testcase classname="HuffmanTests.HuffmanTest" name="testReadCode" time="0.0" />
   <testcase classname="HuffmanTests.HuffmanTest" name="testGetFrequency" time="0.0" />
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <testcase classname="HuffmanTests.HuffmanTest" name="testSortFreqChars" time="0.0" />
+  <testcase classname="HuffmanTests.HuffmanTest" name="testReadWriteDataToFile" time="0.047" />
+  <system-out><![CDATA[java.io.FileNotFoundException: jcf (Het systeem kan het opgegeven bestand niet vinden)
+]]></system-out>
+  <system-err><![CDATA[java.io.FileNotFoundException: key?.ser (De syntaxis van de bestandsnaam, mapnaam of volumenaam is onjuist)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:101)
+	at huffman.codering.HuffmanCoding.writeDataToFile(HuffmanCoding.java:148)
+	at HuffmanTests.HuffmanTest.testWriteException(HuffmanTest.java:238)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+]]></system-err>
 </testsuite>
